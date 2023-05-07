@@ -8,9 +8,9 @@ Your-Links is a Chrome extension that allows you to save your favorite links and
 ## Installation
 
 - First clone the repository
-    
+
     ```bash
-    git clone https://github.com/efraimnabil/Your-Links-extension.git
+    git clone https://github.com/janchris80/your-link-extension.git
     ```
 
 - Then open the extension page in chrome by typing `chrome://extensions/` in the address bar.
@@ -25,7 +25,9 @@ Your-Links is a Chrome extension that allows you to save your favorite links and
 
 Click on the extension icon to open the extension
 
-- Type a link and click `Save` to save it.
+- Click on the `Save` button to save all files in json format
+
+<!-- - Type a link and click `Save` to save it.
 
 - Click on `Save Tap` to save the current tab.
 
@@ -33,4 +35,4 @@ Click on the extension icon to open the extension
 
 - Click on `Delete` to delete a specific link.
 
-- Click on `rename` to rename a specific link.
+- Click on `rename` to rename a specific link. -->
