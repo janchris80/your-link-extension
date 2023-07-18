@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderLinks() {
         let listItems = '';
         links = unique(links);
-        for (let i = 0; i < links.length; i++) {
+        for (let i = links.length - 1; i >= 0; i--) {
+            console.log(links[i][0]);
             listItems += `
             <li>
             <a
@@ -46,44 +47,62 @@ document.addEventListener('DOMContentLoaded', function () {
         listEl.innerHTML = listItems;
     }
 
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        let url = tabs[0].url;
-        let webTitle = tabs[0].title;
-        const regex = /^https:\/\/([\w.-]+)\/([\w-]+)-episode-(\d+)\.html$/;
+    async function loaded() {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            let url = tabs[0].url;
+            let webTitle = tabs[0].title;
+            const regex = /^https:\/\/([\w.-]+)\/([\w-]+)-episode-(\d+)\.html$/;
+            const match = regex.exec(url);
 
-        const match = regex.exec(url);
+            if (match !== null) {
 
-        if (match !== null) {
+                const domain = match[1];
+                const title = match[2];
+                const episodeNumber = match[3];
+                if (domain.includes('watchasian')) {
 
-            const domain = match[1];
-            const title = match[2];
-            const episodeNumber = match[3];
-            if (domain === 'www1.watchasian.id') {
+                    console.log(url); // "https://www1.watchasian.id/may-i-help-you-2022-episode-9.html"
+                    console.log(domain); // "www1.watchasian.id"
+                    console.log(webTitle); // "Watch May I Help You (2022) Episode 9 Online With English sub,FullHD | Dramacool"
+                    console.log(title); // "may-i-help-you-2022"
+                    console.log(episodeNumber); // "9"
+                    console.log(tabs); // "9"
 
-                console.log(url); // "https://www1.watchasian.id/may-i-help-you-2022-episode-9.html"
-                console.log(domain); // "www1.watchasian.id"
-                console.log(webTitle); // "Watch May I Help You (2022) Episode 9 Online With English sub,FullHD | Dramacool"
-                console.log(title); // "may-i-help-you-2022"
-                console.log(episodeNumber); // "9"
-                console.log(tabs); // "9"
+                    const index = links.findIndex(elem => elem[2] === title); // find the item with title
+                    if (index !== -1) {
+                        links.splice(index, 1);
+                    }
 
-                const index = links.findIndex(elem => elem[2] === title); // find the item with title
-                if (index !== -1) {
-                    links.splice(index, 1);
+                    links.push([url, webTitle, title, episodeNumber]);
+
+                    localStorage.setItem('links', JSON.stringify(links));
+                    // Save links to links.json file
+                    // saveLinksToFileNew(links);
+                } else {
+                    console.log('domain has changed');
                 }
-
-                links.push([url, webTitle, title, episodeNumber]);
-
-                localStorage.setItem('links', JSON.stringify(links));
-                // Save links to links.json file
-                // saveLinksToFileNew(links);
+            } else {
+                console.log("No match found.");
             }
-        } else {
-            console.log("No match found.");
-        }
 
-        renderLinks();
-    });
+            renderLinks();
+        });
+    }
+
+    loaded();
+
+    // chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
+    //     // Check if the page has finished loading
+    //     if (changeInfo.status === 'complete') {
+    //         // Do something here
+    //         console.log('Page finished loading:', tab.url);
+    //         console.log(tabId, changeInfo, tab);
+    //         await loaded();
+    //     }
+
+    //     await loaded();
+    // });
+
 
     // Function to save links to links.json file
     function saveLinksToFileNew(links) {
