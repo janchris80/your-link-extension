@@ -30,7 +30,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     listEl.innerHTML = listItems;
 
     async function fetchData() {
-        const data = await fetch(apiURL);
+        const data = await fetch(apiURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        });
         const json = await data.json();
 
         return json;
