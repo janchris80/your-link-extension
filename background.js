@@ -17,7 +17,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }
 
   function saveVisitedUrl(url, userId, isCompleted, isEnable) {
-    const apiURL = 'http://127.0.0.1:8001/api/v1/public/visited-websites';
+    const apiURL = 'https://r4teczx7axxokwllr5wqjaeloe0pkdtk.lambda-url.ap-southeast-1.on.aws/api/v1/public/visited-websites';
 
     fetch(apiURL, {
       method: 'POST',
