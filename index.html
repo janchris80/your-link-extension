@@ -1,37 +1,32 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <h3> K-Drama Resume links </h3>
-    <!-- <input type="text" id="input-el"  placeholder="Enter your URL"> -->
-    <div class="btns">
-        <button id="save-btn"> Save </button>
-        <!-- <button id="save-tap"> Save Tap </button> -->
-        <!-- <button id="delete-all"> Delete All </button> -->
+    <div class="card" style="width: 24rem;">
+        <div class="card-header">
+            K-Drama Resume links
+        </div>
+        <ul class="list-group list-group-flush" id="ul-el">
+        </ul>
     </div>
-    <ul id="ul-el"></ul>
-    <div class="message">
-        Must be a valid URL
-    </div>
-    <!--pop up to take input title of url-->
-    <div class="popup">
-        <div class="popup-content">
-            <div class="pop-up-body">
-                <input type="text" id="title-input" placeholder="Enter Title">
-            </div>
-            <div class="btns">
-                <button id="save-title"> Save </button>
-                <button id="cancel"> Cancel </button>
-            </div>
-            </div>
-            </div>
     <script src="script.js"></script>
-    </body>
+</body>
 
 </html>
