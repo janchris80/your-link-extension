@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', async function () {
 
-    const apiURL = 'http://127.0.0.1:8001/api/v1/public/visited-websites';
+    const apiURL = 'https://r4teczx7axxokwllr5wqjaeloe0pkdtk.lambda-url.ap-southeast-1.on.aws/api/v1/public/visited-websites';
 
     const listEl = document.getElementById('ul-el');
     let listItems = '';
@@ -32,20 +32,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     async function fetchData() {
         const data = await fetch(apiURL);
         const json = await data.json();
-
-        return json;
-    }
-
-    async function update(userId, url, isCompleted) {
-        await fetch(apiURL, {
-            method: 'PUT',
-            data: JSON.stringify({
-                userId: userId,
-                url: url,
-                isCompleted: isCompleted,
-                isEnable: true,
-            })
-        });
 
         return json;
     }
